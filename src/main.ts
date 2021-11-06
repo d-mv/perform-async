@@ -1,25 +1,30 @@
-import { path } from 'ramda'
-interface UnwrapFns<Payload> {
-  Some: (payload: Payload) => void
-  None: (message?: string) => void
+import { path } from 'ramda';
+
+export interface UnwrapFns<Payload> {
+  Some: (payload: Payload) => void;
+  None: (message?: string) => void;
 }
 
-type UnwrapFn<Payload> = (unwrapFns: UnwrapFns<Payload>) => Promise<void>
+type UnwrapFn<Payload> = (unwrapFns: UnwrapFns<Payload>) => Promise<void>;
 
 function unwrap<Payload>(asyncFn: () => Promise<Payload>) {
   return async ({ Some, None }: UnwrapFns<Payload>) => {
     try {
-      const result = await asyncFn()
+      const result = await asyncFn();
 
-      Some(result)
+      Some(result);
     } catch (err: unknown) {
-      None(path(['message'], err))
+      None(path(['message'], err));
     }
-  }
+  };
 }
-function performAsync<Payload>(asyncFn: () => Promise<Payload>): UnwrapFn<Payload>
 
-function performAsync<Payload>(asyncFn: () => Promise<Payload>, unwrapFns: UnwrapFns<Payload>): void
+export function performAsync<Payload>(asyncFn: () => Promise<Payload>): UnwrapFn<Payload>;
+
+export function performAsync<Payload>(
+  asyncFn: () => Promise<Payload>,
+  unwrapFns: UnwrapFns<Payload>,
+): void;
 
 /**
  * Perform asynchronous function and provide a safe wrapped result processing (similar to other languages).
@@ -41,17 +46,16 @@ function performAsync<Payload>(asyncFn: () => Promise<Payload>, unwrapFns: Unwra
  * const a = performAsync<AxiosResponse<string>>(asyncFn)
  *
  * a({
- *   Some: (payload) => console.log(payload.data),,
- *   None: () => console.log('Some error happened: ',,
+ *   Some: (payload) => console.log(payload.data),
+ *   None: () => console.log('Some error happened')
  * })
  *
-
  */
-function performAsync<Payload>(
+export function performAsync<Payload>(
   asyncFn: () => Promise<Payload>,
   unwrapFns?: UnwrapFns<Payload>,
 ): void | UnwrapFn<Payload> {
-  if (!unwrapFns) return unwrap<Payload>(asyncFn)
+  if (!unwrapFns) return unwrap<Payload>(asyncFn);
 
-  unwrap<Payload>(asyncFn)(unwrapFns)
+  unwrap<Payload>(asyncFn)(unwrapFns);
 }

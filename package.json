@@ -4,7 +4,8 @@
   "description": "Perform asynchronous function and provide a safe wrapped result processing (similar to other languages)",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "ts-node-dev ./src/client.ts",
+    "lint": "eslint --ext .ts,.tsx src"
   },
   "repository": {
     "type": "git",
@@ -17,23 +18,26 @@
   },
   "homepage": "https://github.com/d-mv/perform-async#readme",
   "dependencies": {
+    "@types/ramda": "^0.27.46",
     "ramda": "^0.27.1",
-    "typescript": "4.1.3"
+    "typescript": "4.4.4"
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^4.11.0",
-    "@typescript-eslint/parser": "^4.11.0",
-    "eslint": "^7.16.0",
-    "eslint-config-prettier": "^7.1.0",
+    "@getify/eslint-plugin-proper-arrows": "^11.0.3",
+    "@typescript-eslint/eslint-plugin": "^5.3.0",
+    "@typescript-eslint/parser": "^5.3.0",
+    "axios": "^0.24.0",
+    "eslint": "^8.2.0",
+    "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-async-await": "0.0.0",
     "eslint-plugin-eslint-comments": "^3.2.0",
-    "eslint-plugin-import": "2.22.1",
-    "eslint-plugin-jest": "^24.1.3",
-    "eslint-plugin-json": "^2.1.2",
-    "eslint-plugin-markdown": "^1.0.2",
-    "eslint-plugin-prettier": "^3.3.0",
-    "eslint-plugin-promise": "^4.2.1",
-    "prettier": "^2.2.1",
-    "ts-node-dev": "^1.1.1"
+    "eslint-plugin-import": "2.25.2",
+    "eslint-plugin-jest": "^25.2.3",
+    "eslint-plugin-json": "^3.1.0",
+    "eslint-plugin-markdown": "^2.2.1",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-promise": "^5.1.1",
+    "prettier": "^2.4.1",
+    "ts-node-dev": "^1.1.8"
   }
 }

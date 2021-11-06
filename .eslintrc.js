@@ -3,7 +3,6 @@ module.exports = {
   extends: [
     'plugin:json/recommended',
     'plugin:eslint-comments/recommended',
-    'prettier/@typescript-eslint',
     'prettier',
     'plugin:prettier/recommended',
   ],
